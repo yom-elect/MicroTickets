@@ -6,7 +6,6 @@ import { currentUser } from "@microtickets/common";
 //import { verifyUserToken } from "../helpers/jwt";
 
 router.get("/api/users/currentuser", currentUser, (req, res) => {
-  console.log(req.currentUser)
   res.status(200).send({
     currentUser: req.currentUser || null,
   });
