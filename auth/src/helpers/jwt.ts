@@ -9,11 +9,11 @@ export const userToken = (user: UserDoc): string => {
       id: user.id,
       email: user.email,
     },
-    JWT_SECRET_KEY! || "microtest"
+    JWT_SECRET_KEY! || "microtestservice"
   );
 };
 
 export const verifyUserToken = (req: Request) => {
-  return jwt.verify(req.session?.jwt, JWT_SECRET_KEY! || "microtest");
+  return jwt.verify(req.session?.jwt, JWT_SECRET_KEY! || "microtestservicet");
 };
 // echo -n 'string' | base64
