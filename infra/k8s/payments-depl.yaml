@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments
+  template:
+    metadata:
+      labels:
+        app: payments
+    spec:
+      containers:
+        - name: payments
+          image: yomielect/payments
+          env:
+            - name: NATS_URL
+              value: "http://nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MONGO_URI
+              value: "mongodb://payments-mongo-srv:27017/payments"
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_PASSWORD
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_USERNAME
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: JWT_KEY
+            - name: STRIPE_API_KEY
+              value: 'sk_test_3EUvsjZyWqs4JKCpXfyDfm4b008vuiThI4'
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: mongo-secret
+              #     key: STRIPE_API_KEY
+                  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: payments
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000
