@@ -15,6 +15,7 @@ it("responds with details about current user", async () => {
   //   const cookie = authResponse.get("Set-Cookie");
 
   const cookie = await global.signin();
+  console.log(cookie)
   const response = await request(app)
     .get("/api/users/currentuser")
     .set("Cookie", cookie)
