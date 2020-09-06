@@ -18,6 +18,11 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
+    "config": {
+        "mongodbMemoryServer": {
+            "version": "latest"
+        }
+    },
     "dependencies": {
         "@microtickets/common": "^1.0.14",
         "@types/body-parser": "^1.19.0",
@@ -43,7 +48,7 @@
         "@types/jest": "^26.0.8",
         "@types/supertest": "^2.0.10",
         "jest": "^26.2.2",
-        "mongodb-memory-server": "^6.6.3",
+        "mongodb-memory-server": "^6.6.7",
         "supertest": "^4.0.2",
         "ts-jest": "^26.1.4"
     }
