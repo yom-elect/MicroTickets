@@ -48,7 +48,7 @@ global.signin = () => {
     email: "test@test.com",
   };
   // Create the JWT
-  const token = jwt.sign(payload, process.env.JWT_KEY_TEST!);
+  const token = jwt.sign(payload, "microtestservice");
 
   //Build session Object. {jwt: MY_JWT}
   const session = { jwt: token };
