@@ -11,7 +11,7 @@ const start = async () => {
       dbConfig.natsClientId,
       dbConfig.natsUrl
     );
-
+      // Nats streaming connection 
     natsWrapper.client.on("close", () => {
       console.log("NATS connection closed!!");
       process.exit();
