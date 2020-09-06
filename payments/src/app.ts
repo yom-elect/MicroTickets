@@ -10,7 +10,7 @@ import { CreateChargeRouter } from "../src/routes/newCharge";
 
 const app = express();
 
-// because server is behind the  ingress nginx proxy
+// because server is behind the  ingress nginx proxy ..
 app.set("trust proxy", true);
 
 app.use(json());
