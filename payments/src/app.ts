@@ -22,6 +22,7 @@ app.use(
 );
 app.use(currentUser);
 
+// route to create charge on order tickets
 app.use(CreateChargeRouter);
 
 app.all("*", async (req, res) => {
